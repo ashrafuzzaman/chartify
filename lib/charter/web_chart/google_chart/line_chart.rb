@@ -6,6 +6,7 @@ module Charter
       class LineChart < Charter::LineChart
         def render(html_dom_id)
           conf = Charter.config
+          text_color = conf.web_text_color
           js = <<-JS
             google.load("visualization", "1", {packages:["corechart"]});
             google.setOnLoadCallback(drawChart);
@@ -16,13 +17,14 @@ module Charter
                 title: '#{title}',
                 backgroundColor: '#{conf.web_background_color}',
                 colors: #{conf.web_colors.to_json},
-                vAxis: {baselineColor: '#{conf.text_color}',
-                        gridlines: {color: '#{conf.text_color}'},
-                        textStyle: {color: '#{conf.text_color}'}},
-                hAxis: {baselineColor: '#{conf.text_color}',
-                        gridlines: {color: '#{conf.text_color}'},
-                        textStyle: {color: '#{conf.text_color}'}},
-                legend: { textStyle: {color: '#{conf.text_color}'} }
+                vAxis: {baselineColor: '#{text_color}',
+                        gridlines: {color: '#{text_color}'},
+                        textStyle: {color: '#{text_color}'}},
+                hAxis: {baselineColor: '#{text_color}',
+                        gridlines: {color: '#{text_color}'},
+                        textStyle: {color: '#{text_color}'}},
+                legend: { textStyle: {color: '#{text_color}'} },
+                lineWidth: #{conf.web_line_width}
               };
 
               var chart = new google.visualization.LineChart(document.getElementById('#{html_dom_id}'));
