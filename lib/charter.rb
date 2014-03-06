@@ -34,7 +34,7 @@ module Charter
                          '#DD4477' # grey
     ]
 
-    config.web_text_color = '#FFFFFF'
+    config.web_text_color = '#666666'
     config.web_line_width = 2
   end
 end

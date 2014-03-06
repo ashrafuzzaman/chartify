@@ -5,33 +5,32 @@ module Charter
     module GoogleChart
       class LineChart < Charter::LineChart
         def render(html_dom_id)
-          conf = Charter.config
-          text_color = conf.web_text_color
           js = <<-JS
             google.load("visualization", "1", {packages:["corechart"]});
             google.setOnLoadCallback(drawChart);
             function drawChart() {
               var data = google.visualization.arrayToDataTable(#{array_data_table.to_json});
-
-              var options = {
-                title: '#{title}',
-                backgroundColor: '#{conf.web_background_color}',
-                colors: #{conf.web_colors.to_json},
-                vAxis: {baselineColor: '#{text_color}',
-                        gridlines: {color: '#{text_color}'},
-                        textStyle: {color: '#{text_color}'}},
-                hAxis: {baselineColor: '#{text_color}',
-                        gridlines: {color: '#{text_color}'},
-                        textStyle: {color: '#{text_color}'}},
-                legend: { textStyle: {color: '#{text_color}'} },
-                lineWidth: #{conf.web_line_width}
-              };
-
               var chart = new google.visualization.LineChart(document.getElementById('#{html_dom_id}'));
-              chart.draw(data, options);
+              chart.draw(data, #{chart_options.to_json});
             }
           JS
           js.html_safe
+        end
+
+        def chart_options
+          {
+              title: title,
+              backgroundColor: bg_color,
+              colors: web_colors,
+              vAxis: {baselineColor: text_color,
+                      gridlines: {color: text_color},
+                      textStyle: {color: text_color}},
+              hAxis: {baselineColor: text_color,
+                      gridlines: {color: text_color},
+                      textStyle: {color: text_color}},
+              legend: {textStyle: {color: text_color}},
+              lineWidth: config.web_line_width
+          }
         end
 
         protected
