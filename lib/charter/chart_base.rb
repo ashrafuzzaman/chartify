@@ -67,23 +67,31 @@ module Charter
     end
 
     def text_color
-      config.web_text_color
+      web_config.text_color
     end
 
     def baseline_color
-      config.web_text_color
+      text_color
+    end
+
+    def grid_color
+      text_color
     end
 
     def bg_color
-      config.web_background_color
+      web_config.background_color
     end
 
     def web_colors
-      config.web_colors
+      web_config.colors
     end
 
     def config
       @config ||= Charter.config
+    end
+
+    def web_config
+      @web_config ||= Charter.config.web_config
     end
   end
 end

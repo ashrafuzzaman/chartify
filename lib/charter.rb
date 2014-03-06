@@ -9,6 +9,14 @@ module Charter
     @config
   end
 
+  def web_configure(&block)
+    yield @web_config ||= Charter::WebConfiguration.new
+  end
+
+  def web_config
+    @web_config
+  end
+
   configure do |config|
     config.web_api_name = :google_chart
     config.chart = {chart_js: {colors: [{
@@ -24,17 +32,19 @@ module Charter
                                             point_stroke_color: "#fff"
                                         }]}
     }
-    config.web_background_color = '#FFFFFF'
-    config.web_colors = ['#3366CC', # blue
-                         '#DC3912', # red
-                         '#FF9900', # yellow
-                         '#109618', # green
-                         '#990099', # dk purple
-                         '#0099C6', # sky
-                         '#DD4477' # grey
-    ]
 
-    config.web_text_color = '#666666'
-    config.web_line_width = 2
+    config.web_configure do |wc|
+      wc.background_color = '#FFFFFF'
+      wc.colors = ['#3366CC', # blue
+                           '#DC3912', # red
+                           '#FF9900', # yellow
+                           '#109618', # green
+                           '#990099', # dk purple
+                           '#0099C6', # sky
+                           '#DD4477' # grey
+      ]
+      wc.text_color = '#666666'
+      wc.line_width = 2
+    end
   end
 end
