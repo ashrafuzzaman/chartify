@@ -9,14 +9,6 @@ module Charter
     @config
   end
 
-  def web_configure(&block)
-    yield @web_config ||= Charter::WebConfiguration.new
-  end
-
-  def web_config
-    @web_config
-  end
-
   configure do |config|
     config.web_api_name = :google_chart
     config.chart = {chart_js: {colors: [{
@@ -33,7 +25,7 @@ module Charter
                                         }]}
     }
 
-    config.web_configure do |wc|
+    config.web do |wc|
       wc.background_color = '#FFFFFF'
       wc.colors = ['#3366CC', # blue
                            '#DC3912', # red

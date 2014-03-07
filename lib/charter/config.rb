@@ -3,9 +3,14 @@ module Charter
     include ActiveSupport::Configurable
     config_accessor :web_api_name
     config_accessor :chart
-    config_accessor :web_config
 
+    def web(&block)
+      yield @web_config ||= Charter::WebConfiguration.new
+    end
 
+    def web_config
+      @web_config
+    end
   end
 
   class WebConfiguration

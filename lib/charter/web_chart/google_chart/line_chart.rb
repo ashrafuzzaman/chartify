@@ -29,7 +29,7 @@ module Charter
                       gridlines: {color: grid_color},
                       textStyle: {color: text_color}},
               legend: {textStyle: {color: text_color}},
-              lineWidth: config.web_line_width
+              lineWidth: config.web_config.line_width
           }
         end
 
