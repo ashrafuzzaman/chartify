@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "A gem to manage online chart so that it can be exportable in image from ruby code."
   s.description = "A gem to manage online chart so that it can be exportable in image from ruby code."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   #s.add_dependency "rails", ">= 3.2.16"
