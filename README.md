@@ -22,4 +22,17 @@ I plan to start supporting basic charts.
 - Line
 - Area
 
+Plan for the library api
+------------------------
+
+Line chart
+----------
+```ruby
+Charter.build(:line) do |chart|
+    chart.data = [{...}]
+    chart.columns = {hours_remain: I18n.t('hours_remain'), estimated_hours_remain: I18n.t('hours_estimated')}
+    chart.label_column = :day
+end
+```
+
 This project rocks and uses MIT-LICENSE.
