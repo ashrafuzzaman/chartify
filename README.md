@@ -28,7 +28,7 @@ Plan for the library api
 Line chart
 ----------
 ```ruby
-Charter.build(:line) do |chart|
+Charter::Factory.build(:line) do |chart|
     chart.data = [{...}]
     chart.columns = {hours_remain: I18n.t('hours_remain'), estimated_hours_remain: I18n.t('hours_estimated')}
     chart.label_column = :day
