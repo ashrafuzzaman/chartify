@@ -1,34 +1,20 @@
 require 'charter/bar_chart'
+require 'charter/web_chart/google_chart/google_chart_module'
 
 module Charter
   module WebChart
     module GoogleChart
       class BarChart < Charter::BarChart
+        include Charter::WebChart::GoogleChart::GoogleChartModule
+
         def render(html_dom_id)
-          datasets = []
-          colors = Charter.config.chart[:google_chart][:colors]
-
-          columns.each_with_index do |column, i|
-            if column.kind_of?(Array)
-              key, text = column[0], column[1]
-            else
-              key, text = column, column.to_s.humanize
-            end
-            color = colors[i%colors.size]
-            datasets << {
-                fillColor: color[:fill_color],
-                strokeColor: color[:stroke_color],
-                pointColor: color[:point_color],
-                pointStrokeColor: color[:point_stroke_color],
-                data: data_for_column(key)}
-          end
-
           js = <<-JS
-            var lineChartData = {
-                labels: #{data_for_column(label_column).to_json},
-                datasets: #{datasets.to_json}
-            }
-            var myLine = new Chart(document.getElementById("#{html_dom_id}").getContext("2d")).Bar(lineChartData, {bezierCurve: false});
+            google.load("visualization", "1", {packages:["corechart"]});
+            google.setOnLoadCallback(function () {
+              var data = google.visualization.arrayToDataTable(#{array_data_table.to_json});
+              var chart = new google.visualization.BarChart(document.getElementById('#{html_dom_id}'));
+              chart.draw(data, #{chart_options.to_json});
+            });
           JS
           js.html_safe
         end
