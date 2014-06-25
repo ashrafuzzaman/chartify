@@ -5,7 +5,7 @@ require "charter/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name = "charter"
+  s.name = "chartify"
   s.version = Charter::VERSION
   s.authors = ["A.K.M. Ashrafuzzaman"]
   s.email = ["ashrafuzzaman.g2@gmail.com"]
