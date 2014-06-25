@@ -1,6 +1,6 @@
-require 'charter/bar_chart'
+require 'chartify/bar_chart'
 
-module Charter
+module Chartify
   module WebChart
     module GoogleChart
       module GoogleChartModule

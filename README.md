@@ -1,4 +1,4 @@
-Charter
+Chartify
 =======
 The purpose of this gem is to capture data to create a chart, in an object, so that we can do the following things
 
@@ -24,7 +24,7 @@ For generating image from the chart data we are using [Gruff](https://github.com
 
 Here are some sample code to generate graph object and render to web.
 ```ruby
-@chart = Charter::Factory.build(:line) do |chart|
+@chart = Chartify::Factory.build(:line) do |chart|
   chart.data = [{hours_remain: 100, estimated_hours_remain: 100, day: 3.days.ago.to_date},
                 {hours_remain: 50, estimated_hours_remain: 45, day: 2.days.ago.to_date},
                 {hours_remain: 5, estimated_hours_remain: 10, day: 1.days.ago.to_date}]

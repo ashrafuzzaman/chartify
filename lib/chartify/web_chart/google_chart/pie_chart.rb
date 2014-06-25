@@ -1,11 +1,11 @@
-require 'charter/pie_chart'
-require 'charter/web_chart/google_chart/google_chart_module'
+require 'chartify/pie_chart'
+require 'chartify/web_chart/google_chart/google_chart_module'
 
-module Charter
+module Chartify
   module WebChart
     module GoogleChart
-      class PieChart < Charter::PieChart
-        include Charter::WebChart::GoogleChart::GoogleChartModule
+      class PieChart < Chartify::PieChart
+        include Chartify::WebChart::GoogleChart::GoogleChartModule
 
         # Js data
         # var data = google.visualization.arrayToDataTable([

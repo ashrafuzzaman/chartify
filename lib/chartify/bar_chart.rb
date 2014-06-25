@@ -1,7 +1,7 @@
-require 'charter/chart_base'
+require 'chartify/chart_base'
 require 'gruff'
 
-module Charter
+module Chartify
   class BarChart < ChartBase
     def to_blob
       g = prepare_gruff(:bar)

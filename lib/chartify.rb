@@ -1,8 +1,8 @@
-module Charter
-  autoload :Configuration, "charter/config"
+module Chartify
+  autoload :Configuration, "chartify/config"
 
   def self.configure(&block)
-    yield @config ||= Charter::Configuration.new
+    yield @config ||= Chartify::Configuration.new
   end
 
   def self.config

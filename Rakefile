@@ -25,10 +25,10 @@ begin
   require 'rdoc/task'
 
   Rake::RDocTask.new do |rdoc|
-    require 'charter/version'
+    require 'chartify/version'
 
     rdoc.rdoc_dir = 'rdoc'
-    rdoc.title = "Charter #{Charter::VERSION}"
+    rdoc.title = "Chartify #{Chartify::VERSION}"
     rdoc.rdoc_files.include('README*')
     rdoc.rdoc_files.include('lib/**/*.rb')
   end

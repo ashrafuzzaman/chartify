@@ -1,14 +1,14 @@
-require 'charter/gruff_themes'
-require 'charter/line_chart'
-require 'charter/pie_chart'
-require 'charter/bar_chart'
+require 'chartify/gruff_themes'
+require 'chartify/line_chart'
+require 'chartify/pie_chart'
+require 'chartify/bar_chart'
 
-module Charter
+module Chartify
   class Factory
     # @param type can be of line, pie, bar etc
     def self.build(type, &block)
       raise "type has to be a symbol" unless type.kind_of? Symbol
-      chart = "Charter::#{type.to_s.camelize}Chart".constantize.new
+      chart = "Chartify::#{type.to_s.camelize}Chart".constantize.new
       block.call chart
       chart
     end

@@ -1,4 +1,4 @@
 # desc "Explaining what the task does"
-# task :charter do
+# task :chartify do
 #   # Task goes here
 # end

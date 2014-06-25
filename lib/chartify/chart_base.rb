@@ -1,6 +1,6 @@
-require 'charter/gruff_themes'
+require 'chartify/gruff_themes'
 
-module Charter
+module Chartify
   class ChartBase
     attr_accessor :title, :data, :columns, :label_column
 
@@ -18,10 +18,10 @@ module Charter
     end
 
     def render_chart(html_dom_id, options = {})
-      api_name = options[:web_api_name] || Charter.config.web_api_name.to_s
+      api_name = options[:web_api_name] || Chartify.config.web_api_name.to_s
       class_name = self.class.name.split("::")[1]
-      load "charter/web_chart/#{api_name}/#{class_name.underscore}.rb"
-      chart = "Charter::WebChart::#{api_name.camelize}::#{class_name}".constantize.new
+      load "chartify/web_chart/#{api_name}/#{class_name.underscore}.rb"
+      chart = "Chartify::WebChart::#{api_name.camelize}::#{class_name}".constantize.new
       chart.data, chart.columns, chart.label_column = self.data, self.columns, self.label_column
       html = <<-HTML
       #{chart.include_js if chart.respond_to?(:include_js)}
@@ -43,7 +43,7 @@ module Charter
       chart_type = "Gruff::#{chart_type}".constantize
 
       g = chart_type.new
-      g.theme = Charter::Themes::GOOGLE_CHART
+      g.theme = Chartify::Themes::GOOGLE_CHART
       g.title = self.title
       g
     end
@@ -109,11 +109,11 @@ module Charter
     end
 
     def config
-      @config ||= Charter.config
+      @config ||= Chartify.config
     end
 
     def web_config
-      @web_config ||= Charter.config.web_config
+      @web_config ||= Chartify.config.web_config
     end
   end
 end

@@ -1,11 +1,11 @@
-require 'charter/line_chart'
-require 'charter/web_chart/google_chart/google_chart_module'
+require 'chartify/line_chart'
+require 'chartify/web_chart/google_chart/google_chart_module'
 
-module Charter
+module Chartify
   module WebChart
     module GoogleChart
-      class LineChart < Charter::LineChart
-        include Charter::WebChart::GoogleChart::GoogleChartModule
+      class LineChart < Chartify::LineChart
+        include Chartify::WebChart::GoogleChart::GoogleChartModule
 
         def render(html_dom_id)
           js = <<-JS

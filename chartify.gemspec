@@ -1,15 +1,15 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "charter/version"
+require "chartify/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name = "chartify"
-  s.version = Charter::VERSION
+  s.version = Chartify::VERSION
   s.authors = ["A.K.M. Ashrafuzzaman"]
   s.email = ["ashrafuzzaman.g2@gmail.com"]
-  s.homepage = "https://github.com/ashrafuzzaman/charter"
+  s.homepage = "https://github.com/ashrafuzzaman/chartify"
   s.summary = "A gem to manage online chart so that it can be exportable in image from ruby code."
   s.description = "A gem to manage online chart so that it can be exportable in image from ruby code."
 

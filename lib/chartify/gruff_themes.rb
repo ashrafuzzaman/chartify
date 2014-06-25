@@ -1,4 +1,4 @@
-module Charter
+module Chartify
   module Themes
     GOOGLE_CHART = {
         :colors => [

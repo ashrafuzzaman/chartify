@@ -1,14 +1,14 @@
-require 'charter/chart_base'
+require 'chartify/chart_base'
 require 'gruff'
 
 # Example
 # -------
-# Charter::Factory.build(:pie) do |chart|
+# Chartify::Factory.build(:pie) do |chart|
 #   chart.data = {'ruby' => 100,
 #                 'python' => 12}
 #   chart.columns = ['Language', 'Usage']
 # end
-module Charter
+module Chartify
   class PieChart < ChartBase
     def to_blob
       g = prepare_gruff(:pie)

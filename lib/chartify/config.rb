@@ -1,11 +1,11 @@
-module Charter
+module Chartify
   class Configuration
     include ActiveSupport::Configurable
     config_accessor :web_api_name
     config_accessor :chart
 
     def web(&block)
-      yield @web_config ||= Charter::WebConfiguration.new
+      yield @web_config ||= Chartify::WebConfiguration.new
     end
 
     def web_config
