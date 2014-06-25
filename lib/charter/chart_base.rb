@@ -24,6 +24,7 @@ module Charter
       chart = "Charter::WebChart::#{api_name.camelize}::#{class_name}".constantize.new
       chart.data, chart.columns, chart.label_column = self.data, self.columns, self.label_column
       html = <<-HTML
+      #{chart.include_js if chart.respond_to?(:include_js)}
       <script type="application/javascript" class="chart_script">
         #{chart.render(html_dom_id)}
       </script>
@@ -36,6 +37,7 @@ module Charter
     end
 
     protected
+    # @param type - type of the Gruff. It's a factory to create the appropriate
     def prepare_gruff(type)
       chart_type = type.to_s.classify
       chart_type = "Gruff::#{chart_type}".constantize

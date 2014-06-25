@@ -26,6 +26,11 @@ module Charter
             [row[label_column]] + column_keys.collect { |col| row[col] }
           end
         end
+
+        def include_js
+          %q{<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization',
+       'version':'1','packages':['timeline']}]}"></script>}
+        end
       end
     end
   end

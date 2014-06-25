@@ -7,6 +7,15 @@ module Charter
       class PieChart < Charter::PieChart
         include Charter::WebChart::GoogleChart::GoogleChartModule
 
+        # Js data
+        # var data = google.visualization.arrayToDataTable([
+        #                                                      ['Task', 'Hours per Day'],
+        #                                                      ['Work',     11],
+        #                                                      ['Eat',      2],
+        #                                                      ['Commute',  2],
+        #                                                      ['Watch TV', 2],
+        #                                                      ['Sleep',    7]
+        #                                                  ]);
         def render(html_dom_id)
           datasets = data.collect do |column|
             if column.kind_of?(Array)
@@ -15,17 +24,8 @@ module Charter
               title, val = column, column.to_s.humanize
             end
             [title, val]
-
-            # Js data
-            # var data = google.visualization.arrayToDataTable([
-            #                                                      ['Task', 'Hours per Day'],
-            #                                                      ['Work',     11],
-            #                                                      ['Eat',      2],
-            #                                                      ['Commute',  2],
-            #                                                      ['Watch TV', 2],
-            #                                                      ['Sleep',    7]
-            #                                                  ]);
           end
+          datasets.insert 0, column_names
 
           js = <<-JS
             google.load("visualization", "1", {packages:["corechart"]});

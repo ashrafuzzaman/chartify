@@ -1,27 +1,26 @@
 require 'charter/chart_base'
 require 'gruff'
 
+# Example
+# -------
+# Charter::Factory.build(:pie) do |chart|
+#   chart.data = {'ruby' => 100,
+#                 'python' => 12}
+#   chart.columns = ['Language', 'Usage']
+# end
 module Charter
   class PieChart < ChartBase
     def to_blob
       g = prepare_gruff(:pie)
 
-      columns.each do |column|
-        if column.kind_of?(Array)
-          key, text = column[0], column[1]
+      data.each do |row|
+        if row.kind_of?(Array)
+          key, val = row[0], row[1]
         else
-          key, text = column, column.to_s.humanize
+          key, val = row.key, row.val
         end
-
-        g.data(text, data_for_column(key))
+        g.data(key, val)
       end
-
-      labels = {}
-      data_for_column(label_column).each_with_index do |label, index|
-        labels[index] = label.to_s
-      end
-
-      g.labels = labels
       g.to_blob
     end
   end
