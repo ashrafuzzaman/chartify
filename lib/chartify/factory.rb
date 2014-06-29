@@ -2,6 +2,8 @@ require 'chartify/gruff_themes'
 require 'chartify/line_chart'
 require 'chartify/pie_chart'
 require 'chartify/bar_chart'
+require 'chartify/column_chart'
+require 'chartify/area_chart'
 
 module Chartify
   class Factory

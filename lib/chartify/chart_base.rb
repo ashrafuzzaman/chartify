@@ -18,7 +18,7 @@ module Chartify
     end
 
     def render_chart(html_dom_id, options = {})
-      api_name = options[:web_api_name] || Chartify.config.web_api_name.to_s
+      api_name = options[:web_api_name] || config.web_api_name.to_s
       class_name = self.class.name.split("::")[1]
       load "chartify/web_chart/#{api_name}/#{class_name.underscore}.rb"
       chart = "Chartify::WebChart::#{api_name.camelize}::#{class_name}".constantize.new

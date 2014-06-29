@@ -2,10 +2,10 @@ require 'chartify/chart_base'
 require 'gruff'
 
 module Chartify
-  class BarChart < ChartBase
+  class ColumnChart < ChartBase
     def to_blob
       raise 'Need to specify label_column' unless label_column.present?
-      g = prepare_gruff(:side_bar)
+      g = prepare_gruff(:bar)
 
       columns.each do |column|
         if column.kind_of?(Array)
