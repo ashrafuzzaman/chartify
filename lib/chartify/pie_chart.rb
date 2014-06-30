@@ -10,6 +10,11 @@ require 'gruff'
 # end
 module Chartify
   class PieChart < ChartBase
+    def initialize
+      super
+      self.columns = ['Title', 'Value']
+    end
+
     def to_blob
       g = prepare_gruff(:pie)
 
