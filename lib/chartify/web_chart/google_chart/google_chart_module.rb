@@ -28,9 +28,12 @@ module Chartify
           end
         end
 
+        def timestamp
+          @timestamp ||= Time.now.to_i
+        end
+
         def include_js
-          %q{<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization',
-       'version':'1','packages':['timeline']}]}"></script>}
+          %q{<script type="text/javascript" src="https://www.google.com/jsapi"></script>}
         end
       end
     end
