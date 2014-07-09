@@ -50,7 +50,7 @@ module Chartify
       chart_type = "Gruff::#{chart_type}".constantize
 
       g = chart_type.new
-      g.theme = Chartify::Themes::GOOGLE_CHART
+      g.theme = config.image_theme
       g.title = self.title
       g
     end

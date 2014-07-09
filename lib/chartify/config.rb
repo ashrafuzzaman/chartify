@@ -2,7 +2,8 @@ module Chartify
   class Configuration
     include ActiveSupport::Configurable
     config_accessor :web_api_name
-    config_accessor :chart
+    # config_accessor :chart
+    config_accessor :image_theme
 
     def web(&block)
       yield @web_config ||= Chartify::WebConfiguration.new
