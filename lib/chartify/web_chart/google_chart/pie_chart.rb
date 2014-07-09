@@ -6,16 +6,6 @@ module Chartify
     module GoogleChart
       class PieChart < Chartify::PieChart
         include Chartify::WebChart::GoogleChart::GoogleChartModule
-
-        # Js data
-        # var data = google.visualization.arrayToDataTable([
-        #                                                      ['Task', 'Hours per Day'],
-        #                                                      ['Work',     11],
-        #                                                      ['Eat',      2],
-        #                                                      ['Commute',  2],
-        #                                                      ['Watch TV', 2],
-        #                                                      ['Sleep',    7]
-        #                                                  ]);
         def render(html_dom_id)
           datasets = data.collect do |column|
             if column.kind_of?(Array)
@@ -25,17 +15,19 @@ module Chartify
             end
             [title, val]
           end
-          datasets.insert 0, column_names
+          insert_title_row(datasets)
 
           js = <<-JS
-            google.load("visualization", "1", {packages:["corechart"], callback:drawChart#{timestamp}});
-            function drawChart#{timestamp}() {
-              var data = google.visualization.arrayToDataTable(#{datasets.to_json});
-              var chart = new google.visualization.PieChart(document.getElementById('#{html_dom_id}'));
-              chart.draw(data, #{chart_options.to_json});
-            }
+            var data = google.visualization.arrayToDataTable(#{datasets.to_json});
+            var chart = new google.visualization.PieChart(document.getElementById('#{html_dom_id}'));
+            chart.draw(data, #{chart_options.to_json});
           JS
-          js.html_safe
+          wrap_in_function(js).html_safe
+        end
+
+        private
+        def insert_title_row(datasets)
+          datasets.insert 0, column_names
         end
       end
     end

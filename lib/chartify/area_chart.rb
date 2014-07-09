@@ -14,7 +14,7 @@ module Chartify
   class AreaChart < ChartBase
     def to_blob
       raise 'Need to specify label_column' unless label_column.present?
-      g = prepare_gruff(:area)
+      g = instantiate_gruff(:area)
 
       columns.each do |column|
         if column.kind_of?(Array)

@@ -18,10 +18,8 @@ module Chartify
     end
 
     def render_chart(html_dom_id, options = {})
-      api_name = options[:web_api_name] || config.web_api_name.to_s
-      class_name = self.class.name.split("::")[1]
-      load "chartify/web_chart/#{api_name}/#{class_name.underscore}.rb"
-      chart = "Chartify::WebChart::#{api_name.camelize}::#{class_name}".constantize.new
+      api_name = fetch_api_name(options)
+      chart = instantiate_chart(api_name)
       chart.data, chart.columns, chart.label_column = self.data, self.columns, self.label_column
       html = <<-HTML
       <script type="application/javascript" class="chart_script">
@@ -36,8 +34,18 @@ module Chartify
     end
 
     protected
+    def instantiate_chart(api_name)
+      class_name = self.class.name.split("::")[1]
+      load "chartify/web_chart/#{api_name}/#{class_name.underscore}.rb"
+      "Chartify::WebChart::#{api_name.camelize}::#{class_name}".constantize.new
+    end
+
+    def fetch_api_name(options)
+      options[:web_api_name] || config.web_api_name.to_s
+    end
+
     # @param type - type of the Gruff. It's a factory to create the appropriate
-    def prepare_gruff(type)
+    def instantiate_gruff(type)
       chart_type = type.to_s.classify
       chart_type = "Gruff::#{chart_type}".constantize
 

@@ -5,7 +5,7 @@ module Chartify
   class ColumnChart < ChartBase
     def to_blob
       raise 'Need to specify label_column' unless label_column.present?
-      g = prepare_gruff(:bar)
+      g = instantiate_gruff(:bar)
 
       columns.each do |column|
         if column.kind_of?(Array)

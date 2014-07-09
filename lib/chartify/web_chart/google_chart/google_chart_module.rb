@@ -35,6 +35,16 @@ module Chartify
         def include_js
           %q{<script type="text/javascript" src="https://www.google.com/jsapi"></script>}
         end
+
+        def wrap_in_function(code)
+          js = <<-JS
+            google.load("visualization", "1", {packages:["corechart"], callback:drawChart#{timestamp}});
+            function drawChart#{timestamp}() {
+              #{code}
+            }
+          JS
+          js.html_safe
+        end
       end
     end
   end

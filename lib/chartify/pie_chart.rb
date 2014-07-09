@@ -16,7 +16,7 @@ module Chartify
     end
 
     def to_blob
-      g = prepare_gruff(:pie)
+      g = instantiate_gruff(:pie)
 
       data.each do |row|
         if row.kind_of?(Array)
