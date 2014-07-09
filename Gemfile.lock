@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    chartify (0.2.2)
+    chartify (0.3.0)
       gruff (~> 0.5)
 
 GEM

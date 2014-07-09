@@ -10,8 +10,11 @@ Gem::Specification.new do |s|
   s.authors = ["A.K.M. Ashrafuzzaman"]
   s.email = ["ashrafuzzaman.g2@gmail.com"]
   s.homepage = "https://github.com/ashrafuzzaman/chartify"
-  s.summary = "A gem to manage online chart so that it can be exportable in image from ruby code."
-  s.description = "A gem to manage online chart so that it can be exportable in image from ruby code."
+  s.summary = "A gem to manage charts in the web and to make it exportable in image from ruby code."
+  s.description = %q{This gem wraps the data to render chart and then it draws those charts in the web
+                      and use the same data to render charts as images, which is often useful when you want to render the chart
+                      in pdf or attach it to emails}
+  s.license = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
